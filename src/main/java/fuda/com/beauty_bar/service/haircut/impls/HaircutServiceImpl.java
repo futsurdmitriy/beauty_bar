@@ -52,6 +52,6 @@ public class HaircutServiceImpl implements IHaircutService {
 
     @Override
     public List getAll() {
-        return null;
+        return haircutRepository.findAll();
     }
 }

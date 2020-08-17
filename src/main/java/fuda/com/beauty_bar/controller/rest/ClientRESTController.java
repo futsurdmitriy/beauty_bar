@@ -1,9 +1,9 @@
 /*
- * Class name :  HaircutRESTController
+ * Class name :  ClientRESTController
  *
  * @author Dmitriy Futsur
  *
- * @version 1.0.0 15-Aug-2020
+ * @version 1.0.0 17-Aug-2020
  *
  * Copyright (c) Dmitriy Futsur
  *
@@ -12,19 +12,21 @@
 
 package fuda.com.beauty_bar.controller.rest;
 
+import fuda.com.beauty_bar.model.Client;
 import fuda.com.beauty_bar.model.Haircut;
+import fuda.com.beauty_bar.service.client.impls.ClientServiceImpl;
 import fuda.com.beauty_bar.service.haircut.impls.HaircutServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/haircut")
+@RequestMapping("/api/client")
 @RestController
-public class HaircutRESTController {
+public class ClientRESTController {
 
     @Autowired
-    HaircutServiceImpl haircutService;
+    ClientServiceImpl clientService;
 
     @RequestMapping("")
     String getIndex() {
@@ -33,16 +35,16 @@ public class HaircutRESTController {
 
     @GetMapping("/hello")
     String getHello() {
-        return "<h1>Hello from Haircut Controller</h1>";
+        return "<h1>Hello from Client Controller</h1>";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    List<Haircut> getHaircutsList() {
-        return haircutService.getAll();
+    List<Client> getCleintList() {
+        return clientService.getAll();
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    Haircut createHaircut(@RequestBody Haircut haircut){
-        return haircutService.create(haircut);
+    Client createClient(@RequestBody Client client){
+        return clientService.create(client);
     }
 }
