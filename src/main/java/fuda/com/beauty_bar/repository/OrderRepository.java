@@ -12,8 +12,9 @@
 
 package fuda.com.beauty_bar.repository;
 
+import fuda.com.beauty_bar.model.Order;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface OrderRepository extends MongoRepository {
+public interface OrderRepository extends MongoRepository<Order, String> {
 
 }
