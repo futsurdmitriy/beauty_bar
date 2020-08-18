@@ -37,6 +37,7 @@ public class HaircutRESTController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @CrossOrigin
     List<Haircut> getHaircutsList() {
         return haircutService.getAll();
     }
