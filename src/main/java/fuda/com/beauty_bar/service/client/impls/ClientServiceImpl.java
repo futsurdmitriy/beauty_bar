@@ -13,15 +13,21 @@
 package fuda.com.beauty_bar.service.client.impls;
 
 import fuda.com.beauty_bar.model.Client;
+import fuda.com.beauty_bar.repository.ClientRepository;
 import fuda.com.beauty_bar.service.client.interfaces.IClientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class ClientServiceImpl implements IClientService {
+
+    @Autowired
+    ClientRepository clientRepository;
+
     @Override
     public Client create(Client client) {
-        return null;
+        return clientRepository.save(client);
     }
 
     @Override
@@ -41,6 +47,6 @@ public class ClientServiceImpl implements IClientService {
 
     @Override
     public List getAll() {
-        return null;
+        return clientRepository.findAll();
     }
 }

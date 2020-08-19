@@ -45,6 +45,7 @@ public class ClientRESTController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     Client createClient(@RequestBody Client client){
+        System.out.println(client);
         return clientService.create(client);
     }
 }

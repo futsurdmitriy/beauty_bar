@@ -37,7 +37,7 @@ public class HaircutServiceImpl implements IHaircutService {
 
     @Override
     public Haircut get(String id) {
-        return null;
+        return haircutRepository.findById(id).orElse(null);
     }
 
     @Override

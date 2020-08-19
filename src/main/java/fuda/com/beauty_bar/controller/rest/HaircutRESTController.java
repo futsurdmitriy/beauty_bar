@@ -46,4 +46,10 @@ public class HaircutRESTController {
     Haircut createHaircut(@RequestBody Haircut haircut){
         return haircutService.create(haircut);
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    Haircut getCafedra(@PathVariable("id") String id) {
+        return haircutService.get(id);
+    }
 }

@@ -32,7 +32,7 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public Order create(Order order) {
-        return null;
+        return orderRepository.save(order);
     }
 
     @Override
