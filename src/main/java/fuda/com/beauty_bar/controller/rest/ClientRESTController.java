@@ -19,6 +19,7 @@ import fuda.com.beauty_bar.service.haircut.impls.HaircutServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequestMapping("/api/client")
@@ -43,9 +44,11 @@ public class ClientRESTController {
         return clientService.getAll();
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     Client createClient(@RequestBody Client client){
-        System.out.println(client);
+        client.setCreatedAt(LocalDateTime.now());
+        client.setUpdatedAt(LocalDateTime.now());
         return clientService.create(client);
     }
 }

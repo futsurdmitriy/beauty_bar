@@ -20,6 +20,7 @@ import fuda.com.beauty_bar.service.order.impls.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequestMapping("/api/order")
@@ -43,8 +44,11 @@ public class OrderRESTController {
         return orderService.getAll();
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     Order createOrder(@RequestBody Order order){
+        order.setCreatedAt(LocalDateTime.now());
+        order.setUpdatedAt(LocalDateTime.now());
         return orderService.create(order);
     }
 }
