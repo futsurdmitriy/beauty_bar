@@ -39,6 +39,7 @@ public class OrderRESTController {
         return "<h1>Hello from Order Controller</h1>";
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     List<Client> getOrderList() {
         return orderService.getAll();
@@ -50,5 +51,11 @@ public class OrderRESTController {
         order.setCreatedAt(LocalDateTime.now());
         order.setUpdatedAt(LocalDateTime.now());
         return orderService.create(order);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    Order deleteOrder(@PathVariable("id") String id){
+        return orderService.delete(id);
     }
 }

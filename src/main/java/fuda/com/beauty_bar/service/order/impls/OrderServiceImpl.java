@@ -13,6 +13,7 @@
 package fuda.com.beauty_bar.service.order.impls;
 
 import fuda.com.beauty_bar.datastorage.DataFake;
+import fuda.com.beauty_bar.model.Client;
 import fuda.com.beauty_bar.model.Order;
 import fuda.com.beauty_bar.repository.OrderRepository;
 import fuda.com.beauty_bar.service.order.interfaces.IOrderService;
@@ -47,7 +48,9 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public Order delete(String id) {
-        return null;
+        Order order = this.get(id);
+        orderRepository.deleteById(order.getId());
+        return order;
     }
 
     @Override
