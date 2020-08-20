@@ -19,6 +19,7 @@ import fuda.com.beauty_bar.service.haircut.interfaces.IHaircutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -32,7 +33,7 @@ public class HaircutServiceImpl implements IHaircutService {
 
     @Override
     public Haircut create(Haircut haircut) {
-        return null;
+        return haircutRepository.save(haircut);
     }
 
     @Override
@@ -42,12 +43,15 @@ public class HaircutServiceImpl implements IHaircutService {
 
     @Override
     public Haircut update(Haircut haircut) {
-        return null;
+        haircut.setUpdatedAt(LocalDateTime.now());
+        return haircutRepository.save(haircut);
     }
 
     @Override
     public Haircut delete(String id) {
-        return null;
+        Haircut haircut = this.get(id);
+        haircutRepository.deleteById(haircut.getId());
+        return haircut;
     }
 
     @Override

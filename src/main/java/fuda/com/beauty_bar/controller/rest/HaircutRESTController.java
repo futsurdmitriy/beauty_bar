@@ -17,6 +17,7 @@ import fuda.com.beauty_bar.service.haircut.impls.HaircutServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequestMapping("/api/haircut")
@@ -42,14 +43,29 @@ public class HaircutRESTController {
         return haircutService.getAll();
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     Haircut createHaircut(@RequestBody Haircut haircut){
+        haircut.setCreatedAt(LocalDateTime.now());
+        haircut.setUpdatedAt(LocalDateTime.now());
         return haircutService.create(haircut);
     }
 
     @CrossOrigin
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    Haircut getCafedra(@PathVariable("id") String id) {
+    Haircut getHaircut(@PathVariable("id") String id) {
         return haircutService.get(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    Haircut updateHaircut(@RequestBody Haircut haircut){
+        return haircutService.update(haircut);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    Haircut deleteHaircut(@PathVariable("id") String id){
+        return haircutService.delete(id);
     }
 }

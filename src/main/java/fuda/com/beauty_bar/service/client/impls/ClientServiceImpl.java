@@ -13,11 +13,13 @@
 package fuda.com.beauty_bar.service.client.impls;
 
 import fuda.com.beauty_bar.model.Client;
+import fuda.com.beauty_bar.model.Haircut;
 import fuda.com.beauty_bar.repository.ClientRepository;
 import fuda.com.beauty_bar.service.client.interfaces.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @Service
 public class ClientServiceImpl implements IClientService {
@@ -32,17 +34,20 @@ public class ClientServiceImpl implements IClientService {
 
     @Override
     public Client get(String id) {
-        return null;
+        return clientRepository.findById(id).orElse(null);
     }
 
     @Override
     public Client update(Client client) {
-        return null;
+        client.setUpdatedAt(LocalDateTime.now());
+        return clientRepository.save(client);
     }
 
     @Override
     public Client delete(String id) {
-        return null;
+        Client client = this.get(id);
+        clientRepository.deleteById(client.getId());
+        return client;
     }
 
     @Override

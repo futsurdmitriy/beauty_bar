@@ -24,6 +24,7 @@ import java.util.List;
 
 @RequestMapping("/api/client")
 @RestController
+@CrossOrigin
 public class ClientRESTController {
 
     @Autowired
@@ -50,5 +51,23 @@ public class ClientRESTController {
         client.setCreatedAt(LocalDateTime.now());
         client.setUpdatedAt(LocalDateTime.now());
         return clientService.create(client);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    Client getClient(@PathVariable("id") String id) {
+        return clientService.get(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    Client updateClient(@RequestBody Client client){
+        return clientService.update(client);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    Client deleteClient(@PathVariable("id") String id){
+        return clientService.delete(id);
     }
 }
